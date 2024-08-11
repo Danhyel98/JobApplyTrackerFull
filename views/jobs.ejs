@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard</title>
+</head>
+<body>
+  <h1>Dashboard</h1>
+  <ul>
+    <% jobs.forEach(job => { %>
+      <li>
+        <strong>Title:</strong> <%= job.title %><br>
+        <strong>Website:</strong> <%= job.website %><br>
+        <strong>Contact Name:</strong> <%= job.contactName %><br>
+        <strong>Contact Email:</strong> <%= job.contactEmail %><br>
+        <strong>Contact Phone:</strong> <%= job.contactPhone %><br>
+        <strong>Address:</strong> <%= job.address %><br>       
+        <strong>Origin:</strong> <%= job.origin %><br> 
+        <strong>Status:</strong> <%= job.status %><br>
+        <strong>Comments:</strong> <%= job.comments %><br>
+      </li>
+    <% }) %>
+  </ul>
+</body>
+</html>

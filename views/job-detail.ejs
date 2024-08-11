@@ -1,0 +1,24 @@
+<%- include('partials/header'); -%>
+
+<body>
+  <div class="container-job-detail">
+    <div id="job-detail">
+      <h1 id="job-title"><%= job.title %></h1>
+      <p id="company-name">Company: <%= job.companyName %></p> 
+      <p id="website">Website: <a href="<%= job.website %>"><%= job.website %></a></p>
+      <hr id="first-hr">
+      <p>Contact of the employer</p>
+      <p id="name-contact">Name: <%= job.contactName %></p>
+      <p id="email-contact">Email: <%= job.contactEmail %></p>
+      <p id="job-contact">Phone: <%= job.contactPhone %></p>
+      <p id="ad-contact">Address: <%= job.address %></p>
+      <hr id="sec-hr">
+      <p id="origin-info"><%= job.origin %></p>
+      <p id="stats-info">Status: <%= job.status %></p>
+      <p id="comments-job">Comments: <%= job.comments %></p>
+      <a href="/jobs/edit/<%= job._id %>" class="btn btn-edit">Edit Job</a>
+    </div>
+  </div>
+</body>
+
+<%- include('partials/footer'); -%>

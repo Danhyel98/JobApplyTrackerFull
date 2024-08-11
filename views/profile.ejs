@@ -1,0 +1,42 @@
+<%- include('partials/header'); -%>
+<body>
+    <h1 id="profile-title">My Profile</h1>
+    <div class="container-profile">
+        <div class="profile-info">
+            <img src="<%= user.profilePicture %>" alt="Profile Picture" class="profile-picture">
+            <a href="<%= user.cv %>" target="_blank">
+            </a>
+        </div>
+        <div class="update-forms">
+            <p><strong>Full name:</strong> <%= user.firstname %> <%= user.lastname %></p>
+            <p><strong>Email:</strong> <%= user.email %></p>
+            <p><strong>GitHub:</strong> <a href="<%= user.github %>" target="_blank"><%= user.github %></a></p>
+            <!-- Button to download a new CV -->
+            <a href="<%= user.cv %>" class="btn btn-download" download>Download CV</a>
+
+           <!-- Form to upload a new CV -->
+           <form action="/profile/update-cv" method="POST" enctype="multipart/form-data">
+            <input type="file" name="cv" accept=".pdf,.doc,.docx" required>
+            <button type="submit" class="btn btn-update">Upload New CV</button>
+        </form>
+
+            <!-- Button to change the password -->
+            <form action="/profile/change-password" method="POST">
+            <!-- Button to change the password -->
+            <a href="/profile/change-password" class="btn btn-update">Change Password</a>
+            </form>
+        </div>
+    </div>
+    <div class="actions-profile">
+        <a href="/dashboard" class="btn btn-back">Back to Dashboard</a>
+    </div>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.has('success')) {
+            if (urlParams.get('success') === 'cv') {
+                alert('CV uploaded successfully!');
+            }
+        }
+    </script>
+</body>
+<%- include('partials/footer'); -%>

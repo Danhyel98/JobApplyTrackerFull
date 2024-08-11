@@ -1,0 +1,58 @@
+<%- include('partials/header'); -%>
+
+<body>
+   <h2 id="job-annonces-title">Your Jobs Announcements here:</h2>
+   <div class="container-of-jobs">
+    
+     
+     <div id="job-container">
+       <!-- Button to add a new job -->
+     <div class="add-job-button-container">
+      <a href="/jobs/add-job" class="btn btn-add-job">Create Job</a>
+    </div>
+       <ul id="jobs-list">
+         <% if (jobs && jobs.length > 0) { %>
+           <% jobs.forEach(job => { %>
+             <li class="job-item">
+               <div class="status-rectangle <%= job.status.toLowerCase().replace(/\s+/g, '-') %>">
+                 <%= job.status %>
+               </div>
+               <h3><%= job.title %></h3>
+               <p>Company: <%= job.companyName %></p>
+               <a href="/jobs/<%= job._id %>" class="see-more-link">See More</a>
+             </li>
+           <% }) %>
+         <% } else { %>
+           <p>No jobs found.</p>
+         <% } %>
+       </ul>
+     </div>
+   </div>
+</body>
+
+<%- include('partials/footer'); -%>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    fetch('/dashboard', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      credentials: 'include'
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok: ' + response.statusText);
+      }
+      return response.text();
+    })
+    .then(html => {
+      document.body.innerHTML = html;
+    })
+    .catch(error => {
+      console.error('Error fetching jobs:', error);
+      document.getElementById('jobs-list').innerHTML = '<p>Error loading jobs.</p>';
+    });
+});
+</script>

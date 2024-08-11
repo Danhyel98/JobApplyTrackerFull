@@ -1,0 +1,60 @@
+<%- include('partials/header'); -%>
+
+<body>
+  <h1 id="edit-title-job">Edit Job : <%= job.title %> </h1>
+
+  <div class="container-job-edit">
+    <form action="/jobs/edit/<%= job._id %>" method="POST" id="edit-form">
+        <div class="form-group">
+          <label for="title">Title:</label>
+          <input type="text" id="title" name="title" value="<%= job.title %>" required>
+        </div>
+        <div class="form-group">
+          <label for="companyName">Company Name:</label>
+          <input type="text" id="companyName" name="companyName" value="<%= job.companyName %>" required>
+        </div>
+        <div class="form-group">
+          <label for="website">Website:</label>
+          <input type="url" id="website" name="website" value="<%= job.website %>" required>
+        </div>
+        <hr id="first-hr">
+        <legend id="info-employer">Contact of the employer</legend>
+        <div class="form-group">
+          <label for="contactName">Contact Name:</label>
+          <input type="text" id="contactName" name="contactName" value="<%= job.contactName %>">
+        </div>
+        <div class="form-group">
+          <label for="contactEmail">Contact Email:</label>
+          <input type="email" id="contactEmail" name="contactEmail" value="<%= job.contactEmail %>">
+        </div>
+        <div class="form-group">
+          <label for="contactPhone">Contact Phone:</label>
+          <input type="tel" id="contactPhone" name="contactPhone" value="<%= job.contactPhone %>">
+        </div>
+        <div class="form-group">
+          <label for="address">Address:</label>
+          <input type="text" id="address" name="address" value="<%= job.address %>">
+        </div>
+        <hr id="sec-hr">
+       
+        <div class="form-group">
+          <label for="status">Status:</label>
+          <select id="status" name="status" required>
+            <option value="Interested" <%= job.status === 'Interested' ? 'selected' : '' %>>Interested</option>
+            <option value="CV sent" <%= job.status === 'CV sent' ? 'selected' : '' %>>CV sent</option>
+            <option value="Negative" <%= job.status === 'Negative' ? 'selected' : '' %>>Negative</option>
+            <option value="Interview" <%= job.status === 'Interview' ? 'selected' : '' %>>Interview</option>
+          </select>
+        </div>
+        <legend>Additional Information</legend>
+        <div class="form-group">
+          <label for="comments">Comments:</label>
+          <textarea id="comments" name="comments" rows="4"><%= job.comments %></textarea>
+        </div>
+
+      <button type="submit" id="btn-update-job">Update Job</button>
+    </form>
+  </div>
+</body>
+
+<%- include('partials/footer'); -%>
