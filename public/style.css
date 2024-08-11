@@ -111,9 +111,6 @@ body #job-container {
   flex-wrap: wrap;
   gap: 15px;
 }
-body .container-job-edit {
-  position: fixed;
-}
 body #jobs-list {
   gap: 30px;
   max-width: 900px;
